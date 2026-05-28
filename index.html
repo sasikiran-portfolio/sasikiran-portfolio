@@ -1,1 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sasikiran Matte — IT Support Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:   #0d1b2a;
+    --blue:   #1b4f8a;
+    --sky:    #2d8bba;
+    --glow:   #4fb3e8;
+    --accent: #f0a500;
+    --light:  #e8f4fd;
+    --white:  #ffffff;
+    --gray:   #7a8fa6;
+    --card:   #111e2d;
+    --border: #1e3a5a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── ANIMATED BG ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(29,79,138,.35) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 80%, rgba(45,139,186,.2) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(13,27,42,1) 0%, transparent 100%);
+    z-index: -1;
+    animation: bgShift 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgShift {
+    0%   { opacity: 1; }
+    100% { opacity: .85; }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(13,27,42,.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--glow);
+    letter-spacing: .5px;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 500;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--glow); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+  }
+
+  .hero-content { max-width: 700px; }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(79,179,232,.15);
+    border: 1px solid rgba(79,179,232,.4);
+    color: var(--glow);
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: .4rem 1.2rem;
+    border-radius: 2rem;
+    margin-bottom: 1.8rem;
+    animation: fadeUp .8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    animation: fadeUp .8s .15s ease both;
+  }
+
+  .hero h1 span { color: var(--glow); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    animation: fadeUp .8s .3s ease both;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    margin-bottom: 2.8rem;
+    animation: fadeUp .8s .45s ease both;
+  }
+
+  .badge {
+    background: rgba(27,79,138,.35);
+    border: 1px solid var(--border);
+    color: var(--light);
+    padding: .4rem 1rem;
+    border-radius: .3rem;
+    font-size: .82rem;
+    font-weight: 500;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp .8s .6s ease both;
+  }
+
+  .btn-primary {
+    background: var(--sky);
+    color: var(--white);
+    padding: .85rem 2.2rem;
+    border-radius: .4rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .95rem;
+    letter-spacing: .3px;
+    transition: background .3s, transform .2s;
+  }
+  .btn-primary:hover { background: var(--glow); transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1.5px solid var(--sky);
+    color: var(--sky);
+    padding: .85rem 2.2rem;
+    border-radius: .4rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .95rem;
+    transition: all .3s;
+  }
+  .btn-outline:hover { background: rgba(45,139,186,.15); transform: translateY(-2px); }
+
+  /* Floating graphic */
+  .hero-visual {
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+    height: 380px;
+    animation: fadeUp .8s .3s ease both;
+  }
+
+  .orbit-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(79,179,232,.2);
+    animation: spin 18s linear infinite;
+  }
+  .orbit-ring:nth-child(2) {
+    inset: 40px;
+    border-color: rgba(79,179,232,.15);
+    animation-duration: 12s;
+    animation-direction: reverse;
+  }
+  .orbit-ring:nth-child(3) {
+    inset: 80px;
+    border-color: rgba(240,165,0,.15);
+    animation-duration: 8s;
+  }
+
+  @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+  .orbit-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--glow);
+    top: -5px; left: 50%;
+    box-shadow: 0 0 12px var(--glow);
+  }
+
+  .center-icon {
+    position: absolute;
+    inset: 110px;
+    background: rgba(27,79,138,.4);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    backdrop-filter: blur(8px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--glow);
+    margin-bottom: .8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 3.5rem;
+    line-height: 1.2;
+  }
+
+  .section-title span { color: var(--glow); }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: .8rem;
+    padding: 2rem;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sky), var(--glow));
+    transform: scaleX(0);
+    transition: transform .3s;
+    transform-origin: left;
+  }
+
+  .skill-card:hover { transform: translateY(-6px); border-color: var(--sky); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .skill-card:hover::before { transform: scaleX(1); }
+
+  .skill-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+  .skill-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .8rem; color: var(--light); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .skill-tag {
+    background: rgba(45,139,186,.15);
+    border: 1px solid rgba(45,139,186,.3);
+    color: var(--glow);
+    font-size: .75rem;
+    padding: .25rem .7rem;
+    border-radius: 2rem;
+  }
+
+  /* ── EXPERIENCE ── */
+  .timeline { position: relative; padding-left: 2.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--sky), transparent);
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 3.5rem;
+    animation: fadeUp .6s ease both;
+  }
+
+  .tl-dot {
+    position: absolute;
+    left: -2.9rem;
+    top: .4rem;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--sky);
+    border: 2px solid var(--navy);
+    box-shadow: 0 0 10px var(--sky);
+  }
+
+  .tl-date {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--glow);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+  }
+
+  .tl-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: .2rem;
+  }
+
+  .tl-company {
+    font-size: .9rem;
+    color: var(--sky);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .tl-points { list-style: none; }
+  .tl-points li {
+    color: var(--gray);
+    font-size: .92rem;
+    line-height: 1.7;
+    padding: .3rem 0 .3rem 1.2rem;
+    position: relative;
+  }
+  .tl-points li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--sky);
+    font-size: .75rem;
+    top: .45rem;
+  }
+
+  /* ── CERTS ── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: .7rem;
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: transform .3s, border-color .3s;
+  }
+  .cert-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+
+  .cert-icon {
+    width: 50px; height: 50px;
+    background: rgba(240,165,0,.1);
+    border: 1px solid rgba(240,165,0,.3);
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .cert-name { font-size: .9rem; font-weight: 600; color: var(--light); }
+  .cert-issuer { font-size: .78rem; color: var(--gray); margin-top: .2rem; }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--gray);
+    font-size: .92rem;
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-item span:first-child { font-size: 1.3rem; }
+  .contact-item a { color: var(--glow); text-decoration: none; }
+  .contact-item a:hover { text-decoration: underline; }
+
+  .avail-box {
+    background: linear-gradient(135deg, rgba(27,79,138,.4), rgba(45,139,186,.2));
+    border: 1px solid var(--sky);
+    border-radius: .8rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .avail-box .big { font-size: 3rem; margin-bottom: .5rem; }
+  .avail-box h4 { font-size: 1.1rem; font-weight: 600; color: var(--glow); margin-bottom: .5rem; }
+  .avail-box p { color: var(--gray); font-size: .9rem; line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2.5rem 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--gray);
+    font-size: .85rem;
+  }
+  footer span { color: var(--glow); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-visual { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SM.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="about">
+  <div class="hero-content">
+    <div class="hero-tag">⚡ Available for Immediate Joining</div>
+    <h1>Sasikiran<br/><span>Matte</span></h1>
+    <p class="hero-sub">
+      IT Support Specialist with hands-on experience in Microsoft 365 Administration,
+      Helpdesk Operations, User Access Management, and Cloud Support.
+      Passionate about solving technical problems with a customer-first mindset.
+    </p>
+    <div class="hero-badges">
+      <span class="badge">🖥 M365 Admin</span>
+      <span class="badge">☁ Azure AD</span>
+      <span class="badge">🔧 IT Helpdesk</span>
+      <span class="badge">🔒 IAM</span>
+      <span class="badge">🐍 Python</span>
+      <span class="badge">🌐 Remote Ready</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="mailto:mattesasikiran44@gmail.com" class="btn-primary">📧 Hire Me</a>
+      <a href="https://linkedin.com/in/matte-sasi-kiran-4092a224a" target="_blank" class="btn-outline">LinkedIn Profile</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="orbit-ring"><div class="orbit-dot"></div></div>
+    <div class="orbit-ring"></div>
+    <div class="orbit-ring"></div>
+    <div class="center-icon">💻</div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I Know</div>
+  <h2 class="section-title">Technical <span>Skills</span></h2>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-icon">🛠</div>
+      <h3>Helpdesk & Support</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Ticketing Systems</span>
+        <span class="skill-tag">Tier-1/Tier-2</span>
+        <span class="skill-tag">Hardware Support</span>
+        <span class="skill-tag">SLA Management</span>
+        <span class="skill-tag">Incident Management</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">☁</div>
+      <h3>M365 & Cloud</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Microsoft 365 Admin</span>
+        <span class="skill-tag">Azure Active Directory</span>
+        <span class="skill-tag">Exchange Online</span>
+        <span class="skill-tag">SharePoint</span>
+        <span class="skill-tag">Power Automate</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🔐</div>
+      <h3>Identity & Access</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">User Provisioning</span>
+        <span class="skill-tag">Onboarding/Offboarding</span>
+        <span class="skill-tag">License Management</span>
+        <span class="skill-tag">Access Control</span>
+        <span class="skill-tag">Security Compliance</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <h3>Networking</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">TCP/IP</span>
+        <span class="skill-tag">DNS</span>
+        <span class="skill-tag">VPN</span>
+        <span class="skill-tag">LAN/WAN</span>
+        <span class="skill-tag">DHCP</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">💻</div>
+      <h3>Operating Systems</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Windows (Proficient)</span>
+        <span class="skill-tag">macOS (Basic)</span>
+        <span class="skill-tag">Windows Server</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <h3>Programming</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Automation Scripts</span>
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work History</div>
+  <h2 class="section-title">My <span>Experience</span></h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">April 2026 – Present</div>
+      <div class="tl-title">IT Support & Systems Administration Intern</div>
+      <div class="tl-company">Karanodaka · Internship</div>
+      <ul class="tl-points">
+        <li>Resolved hardware, software & network issues for 100+ users via ticketing system.</li>
+        <li>Managed user onboarding, offboarding & identity access using M365 Admin Center and Azure AD.</li>
+        <li>Performed TCP/IP, DNS troubleshooting — restoring connectivity with minimal downtime.</li>
+        <li>Maintained IT documentation, SOPs & assisted with security compliance protocols.</li>
+        <li>Automated repetitive IT workflows using Python — improving operational efficiency.</li>
+        <li>Delivered Tier-1/Tier-2 support for Outlook, Exchange Online & M365 apps.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">3 Months Internship</div>
+      <div class="tl-title">Web Development Intern</div>
+      <div class="tl-company">HTML & CSS Programme</div>
+      <ul class="tl-points">
+        <li>Built responsive web pages using HTML5 and CSS3 with strong attention to detail.</li>
+        <li>Diagnosed and resolved front-end issues during testing cycles.</li>
+        <li>Incorporated feedback constructively and delivered quality outputs on schedule.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Achievements</div>
+  <h2 class="section-title">Certifications & <span>Education</span></h2>
+  <div class="certs-grid">
+
+    <div class="cert-card">
+      <div class="cert-icon">🎓</div>
+      <div>
+        <div class="cert-name">B.Tech — Electrical & Electronics Engineering</div>
+        <div class="cert-issuer">Pace Institute of Technology, JNTUK · 2024</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">🏅</div>
+      <div>
+        <div class="cert-name">Cisco Certified Python Programming</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">📊</div>
+      <div>
+        <div class="cert-name">Big Data Foundation Certification</div>
+        <div class="cert-issuer">Big Data Programme</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">🌐</div>
+      <div>
+        <div class="cert-name">HTML & CSS Internship Certification</div>
+        <div class="cert-issuer">Web Development Programme</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Contact <span>Me</span></h2>
+  <div class="contact-grid">
+
+    <div class="contact-info">
+      <h3>Let's Connect</h3>
+      <div class="contact-item">
+        <span>📞</span>
+        <span>+91 9030551827</span>
+      </div>
+      <div class="contact-item">
+        <span>✉</span>
+        <a href="mailto:mattesasikiran44@gmail.com">mattesasikiran44@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span>📍</span>
+        <span>Andhra Pradesh, India</span>
+      </div>
+      <div class="contact-item">
+        <span>🔗</span>
+        <a href="https://linkedin.com/in/matte-sasi-kiran-4092a224a" target="_blank">LinkedIn Profile</a>
+      </div>
+      <div class="contact-item">
+        <span>🌐</span>
+        <span>Open to Remote (Pan-India)</span>
+      </div>
+    </div>
+
+    <div class="avail-box">
+      <div class="big">🚀</div>
+      <h4>Immediately Available</h4>
+      <p>
+        Ready to join full-time from Day 1.<br/>
+        Comfortable with rotational shifts,<br/>
+        remote work & dynamic environments.<br/><br/>
+        <strong style="color:var(--glow)">Open to: IT Support · Helpdesk · M365 Admin · Cloud Support</strong>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built for <span>Sasikiran Matte</span> · IT Support Specialist · Andhra Pradesh, India</p>
+</footer>
+
+</body>
+</html>
 
